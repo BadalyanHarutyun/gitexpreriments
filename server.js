@@ -11,6 +11,7 @@ const signInRoute = require('./routes/signinroute');
 const logOutRoute = require('./routes/logout');
 const profileRoute = require('./routes/profileroute');
 const forgetPasswordRoute = require('./routes/forgetpassword');
+const confirmPasswordRoute = require('./routes/confirmpassword');
 const PORT = process.env.PORT || 5000;
 const oneDay = 1000 * 60 * 60 * 24;
 
@@ -31,7 +32,7 @@ app.use("/", signInRoute);
 app.use("/", logOutRoute);
 app.use("/api", profileRoute);
 app.use("/api", forgetPasswordRoute);
-// app.use("/api")
+app.use("/api", confirmPasswordRoute);
 app.use(express.static(__dirname + '/build'))
 
 
