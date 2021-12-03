@@ -1,0 +1,68 @@
+
+body {
+    background-image: url('../../images/blackbackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+}
+input {
+    border: none;
+}
+button {
+    border: none;
+}
+.main {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login__form {
+    height: inherit;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+.login__form div{
+    display: flex;
+    align-items: flex-end;
+}
+.login__form div:not(:last-child){
+   margin-bottom: 10px;
+}
+.login__form img {
+    height: 40px;
+}
+.login__form input {
+    font-size: 23px;
+    height: 39px;
+    color: #ffff;
+    background-color: #000;
+}
+.login__form a {
+    color: #ffff;
+
+}
+.login__form__links {
+    width: inherit;
+    justify-content: space-evenly;
+}
+.submit__class {
+    width: 330px;
+    height: 35px;
+    background-image: linear-gradient(180deg, #ffb714 0%, #f05324 100%);
+    font-size: 25px;
+    color: #ffff;
+}
+.submit__class:hover {
+    background-image: linear-gradient(180deg, #ffd067 0%, #f05324 100%);
+}
