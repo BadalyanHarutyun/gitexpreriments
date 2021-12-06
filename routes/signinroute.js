@@ -19,20 +19,24 @@ signInRoute.post("/login", body("email").isEmail(), body('password').isLength({ 
             throw "Invalid Password or Email";
         }
         const user = await User.findOne({raw: true, where:{email: req.body.email}});
-        if (user.authenticated) {
-        const match = await compare(req.body.password, user.password);
-        if (match) {
-            console.log(user.id)
-            req.session.userId = user.id;
-        return res.send({msg: 'success'});
-        } else {
+        if(user === null) {
             throw "Invalid Password or Email";
         }
+        if (user.authenticated) {
+        const match = await compare(req.body.password, user.password);
+            if (match) {
+                console.log(user.id)
+                req.session.userId = user.id;
+                req.session.userEmail = user.email;
+                return res.send({msg: 'success'});
+            } else {
+                throw "Invalid Password or Email";
+            }
         } else {
             throw "Please check your email for authentication";
         }
-    } catch(error) {
-        res.send({msg:error })
+    } catch(err) {
+        res.send({msg:err })
     }
 })
 module.exports = signInRoute;
