@@ -35,12 +35,12 @@ app.use("/api", profileRoute);
 app.use("/api", forgetPasswordRoute);
 app.use("/api", confirmPasswordRoute);
 app.use("/api", editeProfileRoute);
-app.use(express.static(__dirname + '/build'))
+app.use(express.static(__dirname + '/build'));
 
 
 app.get('*', (req, res) => {
     console.log("app")
     res.sendFile(__dirname + '/build' + '/index.html')
-})
+});
 app.listen(PORT, () => console.log(`server listen localhost ${PORT}`));
 
