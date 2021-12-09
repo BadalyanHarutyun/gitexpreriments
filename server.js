@@ -16,14 +16,15 @@ const editeProfileRoute = require('./routes/editprofile');
 const PORT = process.env.PORT || 5000;
 const oneDay = 1000 * 60 * 60 * 24;
 const {BaseUrl} = require("./config")
-
-const io = require("socket.io")(3100, {
-    cors: {
-      origin: BaseUrl,
-      path: "/profile",
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+// const io = require("socket.io")(3100, {
+//     cors: {
+//       origin: BaseUrl,
+//       path: "/profile",
       
-    },
-  });
+//     },
+//   });
   io.on("connection", (socket) => {
     //when ceonnect
     console.log("a user connected.");
@@ -57,5 +58,5 @@ app.use(express.static(__dirname + '/build'));
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/build' + '/index.html')
 });
-app.listen(PORT, () => console.log(`server listen localhost ${PORT}`));
+server.listen(PORT, () => console.log(`server listen localhost ${PORT}`));
 
