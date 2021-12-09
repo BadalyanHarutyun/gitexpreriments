@@ -15,8 +15,24 @@ const confirmPasswordRoute = require('./routes/confirmpassword');
 const editeProfileRoute = require('./routes/editprofile');
 const PORT = process.env.PORT || 5000;
 const oneDay = 1000 * 60 * 60 * 24;
+const {BaseUrl} = require("./config")
 
-
+const io = require("socket.io")(3100, {
+    cors: {
+      origin: BaseUrl,
+      path: "/profile",
+      
+    },
+  });
+  io.on("connection", (socket) => {
+    //when ceonnect
+    console.log("a user connected.");
+    socket.on("hello", (data) => {
+        console.log(data)
+        io.emit("hello", data);
+      });
+    //take userId and socketId from user
+    });
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -39,7 +55,6 @@ app.use(express.static(__dirname + '/build'));
 
 
 app.get('*', (req, res) => {
-    console.log("app")
     res.sendFile(__dirname + '/build' + '/index.html')
 });
 app.listen(PORT, () => console.log(`server listen localhost ${PORT}`));
