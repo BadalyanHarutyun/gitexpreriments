@@ -17,7 +17,13 @@ const PORT = process.env.PORT || 5000;
 const oneDay = 1000 * 60 * 60 * 24;
 const {BaseUrl} = require("./config")
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    path:"/proifle"
+  } });
+
+
 // const io = require("socket.io")(3100, {
 //     cors: {
 //       origin: BaseUrl,
@@ -25,15 +31,47 @@ const io = require('socket.io')(server);
       
 //     },
 //   });
+let users=[];
+const addUser = (userId, socketId, name) => {
+  !users.some((user) => user.userId === userId) &&
+    users.push({ userId, socketId, name });
+};
+const getUser = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
   io.on("connection", (socket) => {
     //when ceonnect
-    console.log("a user connected.");
-    socket.on("hello", (data) => {
+    
+    
+    socket.on("addUser", (userId, name) => {
+      if(userId) {
+        addUser(userId, socket.id, name);
+        console.log(users)
+        io.emit("getUsers", ...users)
+      }
+    })
+    //console.log("a user connected.");
+    socket.on("hello", (data,receiverId) => {
         console.log(data)
-        io.emit("hello", data);
+        console.log(socket.id)
+        try{
+          const user = getUser(receiverId);
+          io.to([socket.id, user.socketId]).emit("hello", {data, id:socket.id});
+        } catch(err) {
+          return;
+        }
+        
+    })
+      socket.on('disconnect', () => {
+        users = users.filter(item => item.socketId != socket.id)
+        io.emit("getUsers", ...users)
+        console.log('user disconnected', users);
       });
     //take userId and socketId from user
-    });
+    })
+
+
+ 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
