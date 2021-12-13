@@ -47,16 +47,16 @@ const getUser = (userId) => {
       if(userId) {
         addUser(userId, socket.id, name);
         console.log(users)
-        io.emit("getUsers", ...users)
+        io.emit("getUsers", users)
       }
     })
     //console.log("a user connected.");
-    socket.on("hello", (data,receiverId) => {
+    socket.on("hello", (data,receiverId, name, userId) => {
         console.log(data)
         console.log(socket.id)
         try{
           const user = getUser(receiverId);
-          io.to([socket.id, user.socketId]).emit("hello", {data, id:socket.id});
+          io.to([socket.id, user.socketId]).emit("hello", {data, id:receiverId, name, userId});
         } catch(err) {
           return;
         }
@@ -64,7 +64,7 @@ const getUser = (userId) => {
     })
       socket.on('disconnect', () => {
         users = users.filter(item => item.socketId != socket.id)
-        io.emit("getUsers", ...users)
+        io.emit("getUsers", users)
         console.log('user disconnected', users);
       });
     //take userId and socketId from user
