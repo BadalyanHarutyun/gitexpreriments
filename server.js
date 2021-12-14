@@ -32,9 +32,9 @@ const io = require('socket.io')(server, {
 //     },
 //   });
 let users=[];
-const addUser = (userId, socketId, name) => {
+const addUser = (userId, socketId, name, photo) => {
   !users.some((user) => user.userId === userId) &&
-    users.push({ userId, socketId, name });
+    users.push({ userId, socketId, name, photo });
 };
 const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
@@ -43,9 +43,9 @@ const getUser = (userId) => {
     //when ceonnect
     
     
-    socket.on("addUser", (userId, name) => {
+    socket.on("addUser", (userId, name, photo,) => {
       if(userId) {
-        addUser(userId, socket.id, name);
+        addUser(userId, socket.id, name, photo);
         console.log(users)
         io.emit("getUsers", users)
       }
@@ -62,6 +62,11 @@ const getUser = (userId) => {
         }
         
     })
+    socket.on('logout', () => {
+      users = users.filter(item => item.socketId != socket.id)
+      io.emit("getUsers", users)
+      console.log('user disconnected', users);
+    });
       socket.on('disconnect', () => {
         users = users.filter(item => item.socketId != socket.id)
         io.emit("getUsers", users)

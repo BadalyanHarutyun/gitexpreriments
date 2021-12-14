@@ -3,9 +3,11 @@ body {
 	padding: 0;
 	border: 0;
     background-color: #74CFE9;
+    height: 910px;
 }
 .main {
     display: flex;
+    height: 910px;
 }
 button {
     border: none;
@@ -18,7 +20,7 @@ button {
     display: flex;
     flex-direction: column;
     width: 244px;
-    height: 1000px;
+    height: inherit;
     border-right: solid 3px #000 ;
     text-align: center;
     align-items: center;
@@ -59,10 +61,35 @@ button {
 /* post section */
 .posts__section {
     top: 0%;
-    left: 40%;
+    left: 9%;
     position: relative; 
     display: flex;
     flex-direction: column;
     align-items: center;  
-    height: 2000px;
+    /* height: 2000px; */
+}
+
+/* active users */
+.active__users ul {
+    list-style-type: none;
+
+}
+.active__users ul > li {
+    border: #000 solid 1px;
+    
+    width: 200px;
+    height: 100px;
+}
+/*active user*/
+.active__user {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: "inherit";
+}
+.active__user  img{
+    width: 50%;
+    height: 100%;
+
 }
