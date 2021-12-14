@@ -56,6 +56,7 @@ const getUser = (userId) => {
         console.log(socket.id)
         try{
           const user = getUser(receiverId);
+          io.to( user.socketId).emit("getNotification", {data, id:receiverId, name, userId});
           io.to([socket.id, user.socketId]).emit("hello", {data, id:receiverId, name, userId});
         } catch(err) {
           return;

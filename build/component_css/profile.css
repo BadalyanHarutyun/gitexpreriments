@@ -87,9 +87,15 @@ button {
     width: 100%;
     height: 100%;
     background-color: "inherit";
+    position: relative;
 }
 .active__user  img{
     width: 50%;
     height: 100%;
 
+}
+.active__user i {
+    position: absolute;
+    top: 0%;
+    right: 0%;
 }
