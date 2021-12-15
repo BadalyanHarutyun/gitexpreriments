@@ -3,7 +3,7 @@ const signInRoute = express.Router();
 const { body, validationResult } = require('express-validator');
 
 const {compare} = require('../helpers/encryptandcomparepassword')
-const User = require('../database/models/index');
+const {User} = require('../database/models/index');
 signInRoute.get("/login", (req, res, next) => {
     console.log("hi")
     if(req.session.userId) {

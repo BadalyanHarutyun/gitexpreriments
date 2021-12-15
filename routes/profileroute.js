@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const profileRoute = express.Router();
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 profileRoute.get("/profile", async (req, res) => {
     if(!req.session.userId) {
         return res.send({msg: "/"});

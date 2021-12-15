@@ -8,7 +8,7 @@ const {BaseUrl} = require('../config.js');
 const {encode} = require("../helpers/encodeanddecodetoken");
 const {encrypt} = require("../helpers/encryptandcomparepassword");
 const sendEmail = require("../helpers/sendemail");
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 signUpRoute.post("/signup",
     body("email").isEmail(),
     body("firstName").not().isEmpty(),

@@ -30,7 +30,7 @@ const upload = multer({ storage: storage,limits: { fileSize: 2097152 }, fileFilt
     
 }, }).single("picture");
 
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 
 editeProfileRoute.post("/editprofile", body("email"), body("lastName").not().isEmpty(), body("firstName").not().isEmpty(), async (req, res) => {
     try {

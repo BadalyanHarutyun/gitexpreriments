@@ -1,6 +1,6 @@
 const express = require("express");
 const {decode} = require("../helpers/encodeanddecodetoken");
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 const {BaseUrl} = require("../config");
 const registerAuthRoute = express.Router();
 registerAuthRoute.get("/:id", async (req, res) => {

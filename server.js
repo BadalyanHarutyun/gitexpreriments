@@ -15,7 +15,8 @@ const confirmPasswordRoute = require('./routes/confirmpassword');
 const editeProfileRoute = require('./routes/editprofile');
 const PORT = process.env.PORT || 5000;
 const oneDay = 1000 * 60 * 60 * 24;
-const {BaseUrl} = require("./config")
+const {BaseUrl} = require("./config");
+const messageRoute = require('./routes/messagesroute');
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
   cors: {
@@ -56,8 +57,8 @@ const getUser = (userId) => {
         console.log(socket.id)
         try{
           const user = getUser(receiverId);
-          io.to( user.socketId).emit("getNotification", {data, id:receiverId, name, userId});
-          io.to([socket.id, user.socketId]).emit("hello", {data, id:receiverId, name, userId});
+          io.to( user.socketId).emit("getNotification", {data, receiverId, name, userId});
+          io.to([socket.id, user.socketId]).emit("hello", {data, receiverId, name, userId});
         } catch(err) {
           return;
         }
@@ -96,6 +97,7 @@ app.use("/api", profileRoute);
 app.use("/api", forgetPasswordRoute);
 app.use("/api", confirmPasswordRoute);
 app.use("/api", editeProfileRoute);
+app.use("/api", messageRoute);
 app.use(express.static(__dirname + '/build'));
 
 

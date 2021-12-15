@@ -36,4 +36,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 const User = require('./user')(sequelize, Sequelize);
-module.exports =  User ;
+const Message = require('./message')(sequelize, Sequelize);
+module.exports =  {User, Message} ;

@@ -1,7 +1,7 @@
 const express = require("express");
 const confirmPasswordRoute = express.Router()
 const { body, validationResult } = require('express-validator');
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 const {decode} = require("../helpers/encodeanddecodetoken");
 const {encrypt} = require("../helpers/encryptandcomparepassword");
 confirmPasswordRoute.get("/confirmpassword/:id", async (req, res) => {

@@ -5,7 +5,7 @@ const {BaseUrl} = require('../config.js');
 const {encode} = require("../helpers/encodeanddecodetoken");
 const { body, validationResult } = require('express-validator');
 const sendEmail = require("../helpers/sendemail");
-const User = require("../database/models/index");
+const {User} = require("../database/models/index");
 
 forgetPasswordRoute.post("/forgetpassword", body("email").isEmail(), async (req, res) => {
     try {
