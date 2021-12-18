@@ -41,7 +41,7 @@ button {
 }
 .profile__section p {
     font-size: 110%;
-    overflow: auto;
+    overflow-wrap: anywhere;
 }
 #onlineUsersicon {
     position: absolute;
@@ -63,6 +63,7 @@ button {
     background-color: #ff0000;
     color: #ffff;
     border-radius: 8px;
+    margin: 6px;
 }
 .logout__button:hover {
     background-color: #f24b4b;
@@ -80,13 +81,14 @@ button {
 /* post section */
 .posts__section {
     top: 0%;
-    left: 33%;
-    width: 60%;
+    left: 50%;
+    /* width: 60%; */
     height: max-content;
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center; 
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* height: 2000px;
     
     /* height: 2000px; */
 }
@@ -113,6 +115,7 @@ button {
 #onlineUsers ul > li { 
     width: 100%;
     height: 50px;
+    margin-bottom: 10px;
 }
 #onlineUsers ul > li:hover { 
     background-color: grey;
@@ -149,7 +152,7 @@ button {
 }
 .message__section li {
     position: relative;
-    text-align: center;
+    text-align: inherit;
     inline-size: 150px;
     overflow-wrap: break-word;
     margin-bottom: 20px ;
