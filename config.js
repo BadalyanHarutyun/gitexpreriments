@@ -1,4 +1,3 @@
-
 require("dotenv").config()
 const BaseUrl = process.env.BaseUrl || "http://localhost:5000/";
 const development = {
