@@ -18,6 +18,16 @@ const oneDay = 1000 * 60 * 60 * 24;
 const {BaseUrl} = require("./config");
 const messageRoute = require('./routes/messagesroute');
 const server = require('http').Server(app);
+const cloudinary = require("cloudinary").v2;
+// cloudinary.config({
+//   cloud_name: process.env.APIC_NAME,
+//   api_key: process.env.APIC_KEY,
+//   api_secret: process.env.APIC_SECRET,
+// });
+// cloudinary.uploader.upload("C:/fakepath/zkwljwjgd6e0q6mfvnk5.png", 
+//   {resource_type: "raw", folder: "DEV",
+//   overwrite: true, },
+//   function(error, result) {console.log(result, error)});
 const io = require('socket.io')(server, {
   cors: {
     origin: "http://localhost:3000",
@@ -42,7 +52,7 @@ const getUser = (userId) => {
 };
   io.on("connection", (socket) => {
     //when ceonnect
-    
+    console.log("user connected")
     
     socket.on("addUser", (userId, name, photo,) => {
       if(userId) {
@@ -52,14 +62,17 @@ const getUser = (userId) => {
       }
     })
     //console.log("a user connected.");
-    socket.on("hello", (data,receiverId, name, userId) => {
-        console.log(data)
+    socket.on("hello", (data,receiverId, name, userId, type ) => {
+        console.log("data",data,receiverId, name, userId, type)
         console.log(socket.id)
+        
         try{
           const user = getUser(receiverId);
           io.to( user.socketId).emit("getNotification", {data, receiverId, name, userId});
-          io.to([socket.id, user.socketId]).emit("hello", {data, receiverId, name, userId});
+          io.to([socket.id, user.socketId]).emit("hello", {data, receiverId, name, userId, type});
+          
         } catch(err) {
+          console.log("socket err",err)
           return;
         }
         
