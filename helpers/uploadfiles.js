@@ -12,17 +12,20 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
       folder: "DEV",
+    resource_type: 'auto'
     },
   });  
-const upload = multer({ storage: storage,limits: { fileSize: 2097152 }, fileFilter: function (req, file, cb) {
-    const extension = path.extname(file.originalname).toLowerCase();
-    const allowedImageTypes = [".png", ".jpg", ".jpeg"]
-    console.log(extension === ".png")
-    if ( allowedImageTypes.indexOf(extension) === -1) {
-
-       return cb('Invalid image type', false);
-    }
-    return cb(null, true)
+const upload = (allowedTypes) =>{  return multer({ storage: storage,limits: { fileSize: 2097152 }, fileFilter: function (req, file, cb) {
+      const extension = path.extname(file.originalname).toLowerCase();
+      //const allowedImageTypes = [".png", ".jpg", ".jpeg"]
+      console.log(allowedTypes.indexOf(extension))
     
-}, }).single("picture");
+      if ( allowedTypes.indexOf(extension) === -1) {
+        console.log("fdbvcvbcvb")
+        return cb('Invalid image type', false);
+      }
+      return cb(null, true)
+      
+  }, }).single("picture");
+}
 module.exports = upload;

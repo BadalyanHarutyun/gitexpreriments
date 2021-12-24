@@ -3,7 +3,7 @@ const express = require("express");
 const editeProfileRoute = express.Router();
 const multer = require("multer");
 const { body, validationResult } = require('express-validator');
-const upload = require("../helpers/uploadfiles")
+const upload = require("../helpers/uploadfiles")([".png", ".jpg", ".jpeg"])
 
 const {User} = require("../database/models/index");
 
