@@ -117,6 +117,5 @@ app.use(express.static(__dirname + '/build'));
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/build' + '/index.html')
 });
-//
 server.listen(PORT, () => console.log(`server listen localhost ${PORT}`));
 

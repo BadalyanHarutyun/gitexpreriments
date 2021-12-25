@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const {Message} = require('../database/models/index');
 const message = require("../database/models/message");
 const multer = require("multer");
-const upload = require("../helpers/uploadfiles")([".png", ".jpg", ".jpeg", ".mp4"])
+const upload = require("../helpers/uploadfiles")([".png", ".jpg", ".jpeg", ".mp4",".zip",])
 messageRoute.post("/sendmessage", async (req, res, next) => {
     try {
         const messageObj = req.body.receiverId
