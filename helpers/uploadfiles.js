@@ -26,6 +26,9 @@ const upload = (allowedTypes) =>{  return multer({ storage: storage,limits: { fi
       }
       return cb(null, true)
       
-  }, }).single("picture");
+  },
+
+  
+ }).single("picture");
 }
 module.exports = upload;
