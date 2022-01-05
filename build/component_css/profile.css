@@ -38,6 +38,8 @@ button {
 }
 .profile__section div{
     width: inherit;
+    cursor: pointer;
+
 }
 .profile__section p {
     font-size: 110%;
@@ -77,6 +79,18 @@ button {
 }
 .edit__button:hover {
     background-color: #79c757;
+}
+#backToOnlineusers {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top:0%;
+    left:23px;
+    z-index: 999;
+}
+#backToOnlineusers:hover{
+  color: #e5e1e1;
 }
 /* post section */
 .posts__section {
@@ -176,6 +190,7 @@ button {
 
 .textarea__section{
     position: fixed;
+    transform: translateZ(0);
     display: flex;
     bottom: 0%;
     left: 50%;

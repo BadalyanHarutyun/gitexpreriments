@@ -1,0 +1,9 @@
+@media only screen and (max-width: 500px) {
+    .register {
+      width:300px;
+    }
+    .register input::placeholder {
+        font-size: 15px;
+    }
+   
+  }

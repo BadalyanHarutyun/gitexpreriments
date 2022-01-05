@@ -1,3 +1,29 @@
 @media only screen and (max-width: 600px) {
-    
+    .profile__section {
+      width: 100%;
+    }
+    .posts__section {
+      display: none;
+      left: 33%;
+  }
+  
+  .textarea__section {
+      display: none;
+      left:33%;
+  }
+  }
+  @media only screen and (min-width: 601px) {
+    #onlineUsers {
+      display: flex !important;
+    }
+    #backToOnlineusers {
+      display: none !important;
+    }
+   
+  }
+  @media only screen and (max-width: 400px) {
+    .textarea__section {
+     
+      left:25%;
+  }
   }
