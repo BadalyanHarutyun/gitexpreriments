@@ -33,9 +33,39 @@
 }
    
   }
-  @media only screen and (max-width: 400px) {
-    .textarea__section {
-     
-      left:25%;
+  
+  @media only screen and (max-width: 488px) {
+    
+    .posts__section {
+      
+      left: 21%;
   }
+  
+  .textarea__section {
+      
+      left:21%;
+  }
+  }
+  @media only screen and (max-width: 400px) {
+    
+    .posts__section {
+      
+      left: 15%;
+  }
+  
+  .textarea__section {
+      
+      left:15%;
+  }
+  .message__section li {
+    
+    inline-size: 120px;
+    
+}
+.textarea__section textarea {
+  min-width: 168px;
+  min-height: 49px;
+  max-width: 172px;
+  max-height: 50px;
+}
   }
