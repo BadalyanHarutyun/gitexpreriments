@@ -191,6 +191,7 @@ button {
 .textarea__section{
     position: fixed;
     transform: translateZ(0);
+    backface-visibility: hidden;
     display: flex;
     bottom: 0%;
     left: 50%;
